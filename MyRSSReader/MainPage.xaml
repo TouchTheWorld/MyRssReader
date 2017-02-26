@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="MyRSSReader.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyRSSReader"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel Background="#FF9FB19E">
+        <TextBlock Text="Rss阅读器"></TextBlock>
+        <TextBlock Margin="0,15,0,0" Text="请输入rss源地址" FontSize="22"></TextBlock>
+        <TextBox x:Name="rssURL"></TextBox>
+        <Button Content="点击刷新" Click="Button_Click" Width="300" ClickMode="Press"></Button>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
+            <ListView x:Name="rsslistbox" Height="500" SelectionChanged="rsslistbox_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="60" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="105" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Ellipse Grid.RowSpan="3" Grid.Column="0">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding Img}"></ImageBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Title}" FontSize="25" TextWrapping="Wrap" />
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding PublishedDate}" FontSize="20" />
+                            <TextBlock Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Text="{Binding MainSummary}" FontSize="18" Opacity="0.5"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
+    </StackPanel>
+</Page>
